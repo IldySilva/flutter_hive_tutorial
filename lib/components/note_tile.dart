@@ -50,7 +50,8 @@ class _NoteTileState extends State<NoteTile> with SingleTickerProviderStateMixin
                   Text(
                     widget.note.dateTime.getDayAndHour(),
                     style: const TextStyle(color: Colors.grey, fontSize: 12),
-                  )
+                  ),
+                  Text("${widget.note.steps.length}Steps")
                 ],
               ),
               title: Text(widget.note.title),

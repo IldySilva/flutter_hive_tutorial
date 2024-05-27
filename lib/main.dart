@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_hive_tutorial/services/date_extensions.dart';
+import 'package:flutter_hive_tutorial/models/steps.dart';
 import 'package:flutter_hive_tutorial/services/notes_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -11,6 +9,8 @@ import 'models/note.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(NoteAdapter());
+  Hive.registerAdapter(NoteStepAdapter());
+
   await Hive.openBox<Note>("notes");
   runApp(const MyApp());
 }
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: const Color(0xff427dde),
             onPressed: () {
               NotesService.insert(
-                Note(title: "Olá", dateTime: DateTime.now(), description: "Olá Mundo"),
+                Note(title: "Olá", dateTime: DateTime.now(), description: "Olá Mundo",steps: [NoteStep(note: "Note 1")] ),
               );
             },
             child: const Icon(

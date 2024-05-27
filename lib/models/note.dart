@@ -1,3 +1,4 @@
+import 'package:flutter_hive_tutorial/models/steps.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'note.g.dart';
@@ -12,5 +13,7 @@ class Note {
   String? description;
   @HiveField(3)
   DateTime dateTime;
-  Note({required this.title, required this.dateTime, this.description, this.id});
+  @HiveField(4)
+  List<NoteStep> steps = [];
+  Note({required this.title, required this.dateTime, this.description, this.id, this.steps = const []});
 }
